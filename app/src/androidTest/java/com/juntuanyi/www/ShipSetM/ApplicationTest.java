@@ -1,4 +1,4 @@
-package com.juntuanyi.www.helloworld;
+package com.juntuanyi.www.ShipSetM;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package com.juntuanyi.www.helloworld;
+package com.juntuanyi.www.ShipSetM;
 
 import android.app.Activity;
 import android.os.Bundle;
