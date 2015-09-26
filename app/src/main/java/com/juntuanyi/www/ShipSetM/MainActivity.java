@@ -1,17 +1,40 @@
-package com.juntuanyi.www.ShipSetM;
+package com.juntuanyi.www.shipsetm;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class MainActivity extends Activity {
-    TankView test;
+    private TankView tankView1;
+    private TankView tankView2;
+    private TankViewEvent tankViewEvent = null ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tankViewEvent = new TankViewEvent() {
+            @Override
+            public void onSoundingChanged(TankInfo info) {
+                Log.d("Main", "event-> " + info.toString());
+                Log.d("Main", "callback-> " + info.ref.toString() );
+
+
+            }
+        };
+        TankInfo.soundingMax = 9999;
+        TankInfo.soundingMin = 0;
+        TankInfo.shipId = 1001;
+        tankView1 = (TankView) findViewById(R.id.tankView1);
+
+        tankView1.setInfo(new TankInfo( 1));
+        tankView1.setTankViewEvent(tankViewEvent);
+        tankView2 = (TankView) findViewById(R.id.tankView2);
+        tankView2.setInfo(new TankInfo( 2));
+        tankView2.setTankViewEvent(tankViewEvent);
+
     }
 
     @Override

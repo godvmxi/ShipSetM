@@ -8,7 +8,7 @@
     android:layout_marginBottom="5dp"
     >
 
-    <!--<com.juntuanyi.www.helloworld.TankView android:background="#ccc"-->
+    <!--<ShipSetMankView android:background="#ccc"-->
         <!--android:layout_width="fill_parent"-->
         <!--android:layout_height="100dp"-->
         <!--android:paddingLeft="20dp" android:paddingBottom="40dp"-->
@@ -19,14 +19,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView2" />
+        android:text="Label"
+        android:id="@+id/textViewTankName" />
 
     <EditText
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextSounding"
+        android:text="0.00"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:digits="0123456789."
+        android:maxLength="7"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+
+        android:layout_weight="1" />
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:text="input area"
-        android:layout_weight="1" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="result-> 0.000"
+        android:clickable="true"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/textViewResult" />
 
 </LinearLayout>

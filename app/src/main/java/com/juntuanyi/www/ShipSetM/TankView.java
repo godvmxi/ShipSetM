@@ -1,4 +1,4 @@
-package com.juntuanyi.www.ShipSetM;
+package com.juntuanyi.www.shipsetm;
 
 import android.content.Context;
 
@@ -21,6 +21,7 @@ public class TankView extends LinearLayout {
     private Float result ;
     private Integer soundingMax ;
     private Integer soundingMin ;
+    private TankInfo info ;
 
     private TextView textViewTankName ;
     private TextView textViewResult ;
@@ -46,8 +47,14 @@ public class TankView extends LinearLayout {
         textViewResult.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("TankView","click is here" + this);
-                tankViewEvent.onSoundingChanged("100");
+
+                if (tankViewEvent == null) {
+                    Log.d("TankView", "click is here" + info.toString());
+                    Log.e("TankView", "not set event handler");
+                    return;
+                    //shoud raise a exception
+                }
+                tankViewEvent.onSoundingChanged(info);
 
             }
         });
@@ -59,6 +66,7 @@ public class TankView extends LinearLayout {
 
     public void setName(String name) {
         this.name = name;
+        textViewTankName.setText(this.name);
     }
 
     public Float getResult() {
@@ -98,5 +106,71 @@ public class TankView extends LinearLayout {
 
     public void setTankViewEvent(TankViewEvent tankViewEvent) {
         this.tankViewEvent = tankViewEvent;
+    }
+
+    public TankInfo getInfo() {
+        return info;
+    }
+
+    public void setInfo(TankInfo info) {
+        this.info = info;
+        this.info.ref =this;
+        this.setName(getTankNameById(this.info.tankId));
+
+    }
+    private  String getTankNameById(Integer id){
+        Integer tankIndex = (id+1) / 2 ;
+        Integer lrIndex =  id  % 2 ;
+        String tank = new String();
+
+        switch (tankIndex){
+            case 1 :
+                tank = "一";
+                break ;
+            case 2 :
+                tank = "二";
+                break ;
+            case 3 :
+                tank = "三";
+                break ;
+            case 4 :
+                tank = "四";
+                break ;
+            case 5 :
+                tank = "五";
+                break ;
+            case 6 :
+                tank = "六";
+                break ;
+            case 7 :
+                tank = "七";
+                break ;
+            case 8 :
+                tank = "八";
+                break ;
+            case 9 :
+                tank = "九";
+                break ;
+            case 10 :
+                tank = "十";
+                break ;
+            default:
+//                throw new Exception();
+                break;
+        }
+        if (lrIndex != 0 ) {
+            return "左" + tank + "仓" ;
+        }
+        else
+            return "右" + tank + "仓" ;
+
+    }
+    @Override
+    public String toString() {
+        return "TankView{" +
+                "name='" + name + '\'' +
+                ", sounding=" + sounding +
+                ", result=" + result +
+                '}';
     }
 }

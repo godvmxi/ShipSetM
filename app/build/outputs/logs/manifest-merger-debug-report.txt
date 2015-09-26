@@ -23,7 +23,7 @@ ADDED from AndroidManifest.xml:5:5
 		ADDED from AndroidManifest.xml:7:9
 	android:theme
 		ADDED from AndroidManifest.xml:9:9
-activity#com.juntuanyi.www.helloworld.MainActivity
+activity#com.juntuanyi.www.shipsetm.MainActivity
 ADDED from AndroidManifest.xml:10:9
 	android:label
 		ADDED from AndroidManifest.xml:12:13

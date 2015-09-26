@@ -1,8 +1,8 @@
-package com.juntuanyi.www.ShipSetM;
+package com.juntuanyi.www.shipsetm;
 
 /**
  * Created by dandan on 2015/9/27.
  */
 public interface TankViewEvent {
-    public void onSoundingChanged(String Sounding);
+    public void onSoundingChanged(TankInfo info);
 }
