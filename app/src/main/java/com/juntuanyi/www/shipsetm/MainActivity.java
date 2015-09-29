@@ -1,19 +1,26 @@
 package com.juntuanyi.www.shipsetm;
 
 import android.app.Activity;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.content.Context;
+import android.content.ContentValues;
+
 
 public class MainActivity extends Activity {
     private TankView tankView1;
     private TankView tankView2;
+    private SqlUtils sqlUtils;
     private TankViewEvent tankViewEvent = null ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         tankViewEvent = new TankViewEvent() {
             @Override
@@ -34,6 +41,10 @@ public class MainActivity extends Activity {
         tankView2 = (TankView) findViewById(R.id.tankView2);
         tankView2.setInfo(new TankInfo( 2));
         tankView2.setTankViewEvent(tankViewEvent);
+
+        this.sqlUtils = new SqlUtils(this);
+
+
 
     }
 
@@ -58,4 +69,6 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
