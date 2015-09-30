@@ -29,8 +29,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, name, null, version);
 
     }
-
-    @Override
+    public DatabaseHelper(Context context, String name, int version) {
+        super(context, name, null, version);
+    }
+        @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d("SqlteUilts","onUpgrade");
     }

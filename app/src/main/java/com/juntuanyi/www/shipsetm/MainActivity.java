@@ -3,6 +3,7 @@ package com.juntuanyi.www.shipsetm;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,8 +34,6 @@ public class MainActivity extends Activity {
             public void onSoundingChanged(TankInfo info) {
                 Log.d(logTag, "event-> " + info.toString());
                 Log.d(logTag, "callback-> " + info.ref.toString() );
-
-
             }
         };
         TankInfo.soundingMax = 9999;
@@ -60,7 +59,7 @@ public class MainActivity extends Activity {
         Log.d(logTag,"file dir-> "+filesDir.toString());
         String baseDataDir = filesDir.replaceAll("files","") ;
         String databasesDir = baseDataDir + "/databases" ;
-        String demoDbFileName = databasesDir + "/demo.db" ;
+        String demoDbFileName = databasesDir + "/demo.db3" ;
         Log.d(logTag,"database dir-> "+demoDbFileName);
         Log.d(logTag,"files dir-> "+filesDir);
         Log.d(logTag,"base dir-> "+baseDataDir);
@@ -97,9 +96,18 @@ public class MainActivity extends Activity {
             }
         }
 
-        DatabaseHelper database = new DatabaseHelper(this,"demo",null,1);
-        SQLiteDatabase db = database.getWritableDatabase();
-//        Log.d("Main")
+        DatabaseHelper database = new DatabaseHelper(this,"demo.db3",1);
+        SQLiteDatabase sqliteDatabase = database.getReadableDatabase();
+        Cursor  sqlCursor = sqliteDatabase.rawQuery("select * from shipInfo",null) ;
+        Log.d(logTag,"affect lines -> "+ sqlCursor.getCount()) ;
+        while (sqlCursor.moveToNext() ){
+            Log.d(logTag,sqlCursor.getInt(0)+"  "+ sqlCursor.getString(1) +"  "+  sqlCursor.getString(2) + "  "+ sqlCursor.getString(3) +"  "+ sqlCursor.getString(4)) ;
+
+        }
+
+
+
+
 
 
 
