@@ -15,14 +15,19 @@ import android.database.sqlite.SQLiteOpenHelper ;
 /**
  * Created by dan on 15-9-29.
  */
-public class SqlUtils extends SQLiteOpenHelper {
-    private static final String DB_NAME = "mydata.db"; //数据库名称
-    private static final int version = 1; //数据库版本
+public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public SqlUtils(Context context) {
-        super(context, DB_NAME, null, version);
+
+    public DatabaseHelper(Context context) {
+        super(context, "demo", null, 1);
         // TODO Auto-generated constructor stub
         Log.d("SqlteUilts","on constructon");
+    }
+
+    public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+
+        super(context, name, null, version);
+
     }
 
     @Override
