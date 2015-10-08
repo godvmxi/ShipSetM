@@ -26,7 +26,7 @@ public class SqlUtils extends  Object {
         sqlCursor = sqliteDatabase.rawQuery("select * from tankInfo",null) ;
         Log.d(logTag,"TankInfo affect lines????? -> "+ sqlCursor.getCount()) ;
         TankInfo tankInfo = new TankInfo(1);
-        for (int i = 0; i < 10 ;i++ ){
+        for (int i = 0; i < 2 ;i++ ){
             sqlCursor.moveToNext() ;
 //            Log.d(logTag,sqlCursor.getString(0)+"  "+ sqlCursor.getString(1) +"  "+ sqlCursor.getString(2)   ) ;
 
@@ -38,9 +38,11 @@ public class SqlUtils extends  Object {
             Log.d(logTag,tankInfo.toString());
 
         }
-
     }
-
+    public Integer  queryShipList(){
+        Integer shipList[] = {1,2,3,5};
+        return 1 ;
+    }
     public Boolean queryTankInfo(TankInfo tankInfo){
         return true ;
     }
