@@ -99,9 +99,24 @@ public class MainActivity extends Activity {
         DatabaseHelper database = new DatabaseHelper(this,"demo.db3",1);
         SQLiteDatabase sqliteDatabase = database.getReadableDatabase();
         Cursor  sqlCursor = sqliteDatabase.rawQuery("select * from shipInfo",null) ;
-        Log.d(logTag,"affect lines -> "+ sqlCursor.getCount()) ;
+        Log.d(logTag,"ShipInfo affect lines -> "+ sqlCursor.getCount()) ;
         while (sqlCursor.moveToNext() ){
             Log.d(logTag,sqlCursor.getInt(0)+"  "+ sqlCursor.getString(1) +"  "+  sqlCursor.getString(2) + "  "+ sqlCursor.getString(3) +"  "+ sqlCursor.getString(4)) ;
+        }
+
+        sqlCursor = sqliteDatabase.rawQuery("select * from tankInfo",null) ;
+        Log.d(logTag,"TankInfo affect lines????? -> "+ sqlCursor.getCount()) ;
+        TankInfo tankInfo = new TankInfo(1);
+        for (int i = 0; i < 10 ;i++ ){
+            sqlCursor.moveToNext() ;
+//            Log.d(logTag,sqlCursor.getString(0)+"  "+ sqlCursor.getString(1) +"  "+ sqlCursor.getString(2)   ) ;
+
+
+            tankInfo.tankId = sqlCursor.getInt(1) ;
+            tankInfo.valueType =  sqlCursor.getInt(2);
+            tankInfo.sounding =  sqlCursor.getInt(2);
+            tankInfo.strResult =  sqlCursor.getString(3);
+            Log.d(logTag,tankInfo.toString());
 
         }
 

@@ -7,7 +7,8 @@ public class TankInfo {
 
     public Integer tankId ;
     public Integer valueType;
-    private String strResult;
+    public String strResult;
+    public Integer sounding ;
     static public Integer shipId ;
     static Integer soundingMax ;
     static Integer soundingMin ;
@@ -21,7 +22,8 @@ public class TankInfo {
         return "TankInfo{" +
                 "tankId=" + tankId +
                 ", shipId=" + shipId +
-                ", ref=" + ref +
+                ", type=" + valueType +
+                ", ref=" + ref + " ,result=" + strResult +
                 '}';
     }
 }
