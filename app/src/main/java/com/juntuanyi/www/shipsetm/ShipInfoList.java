@@ -1,5 +1,6 @@
 package com.juntuanyi.www.shipsetm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
 public class ShipInfoList {
     private List<ShipInfo> shipInfolist ;
     public  ShipInfoList(){
-        this.shipInfolist = new List<ShipInfo> ;
+        this.shipInfolist = new ArrayList<ShipInfo>();
 
     }
     public Boolean  appendShipInfo(ShipInfo shipInfo){
@@ -23,7 +24,11 @@ public class ShipInfoList {
     public Boolean removeShipInfo(Integer shipId){
         return true ;
     }
-    public String toString (){
 
+    @Override
+    public String toString() {
+        return "ShipInfoList{" +
+                "shipInfolist=" + shipInfolist +
+                '}';
     }
 }
