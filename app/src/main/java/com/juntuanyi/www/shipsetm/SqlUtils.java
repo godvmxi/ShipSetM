@@ -12,18 +12,20 @@ public class SqlUtils extends  Object {
     private  Integer shipId ;
     private String logTag ;
     private  DatabaseHelper dbHelper ;
+    private SQLiteDatabase sqliteDatabase ;
+    private DatabaseHelper databaseHelper ;
     public SqlUtils(Context context,String dbName){
       //  this.logTag =  this.getLocalClassName() + "Log" ;
         this.logTag =  "SqlUtils" + "Log" ;
-        DatabaseHelper database = new DatabaseHelper(context,dbName,1);
-        SQLiteDatabase sqliteDatabase = database.getReadableDatabase();
-        Cursor sqlCursor = sqliteDatabase.rawQuery("select * from shipInfo",null) ;
-        Log.d(logTag, "ShipInfo affect lines -> " + sqlCursor.getCount()) ;
-        while (sqlCursor.moveToNext() ){
-            Log.d(logTag,sqlCursor.getInt(0)+"  "+ sqlCursor.getString(1) +"  "+  sqlCursor.getString(2) + "  "+ sqlCursor.getString(3) +"  "+ sqlCursor.getString(4)) ;
-        }
+        databaseHelper = new DatabaseHelper(context,dbName,1);
+        sqliteDatabase = databaseHelper.getReadableDatabase();
+//        Cursor sqlCursor = sqliteDatabase.rawQuery("select * from shipInfo",null) ;
+//        Log.d(logTag, "ShipInfo affect lines -> " + sqlCursor.getCount()) ;
+//        while (sqlCursor.moveToNext() ){
+//            Log.d(logTag,sqlCursor.getInt(0)+"  "+ sqlCursor.getString(1) +"  "+  sqlCursor.getString(2) + "  "+ sqlCursor.getString(3) +"  "+ sqlCursor.getString(4)) ;
+//        }
 
-        sqlCursor = sqliteDatabase.rawQuery("select * from tankInfo",null) ;
+        Cursor sqlCursor = sqliteDatabase.rawQuery("select * from tankInfo",null) ;
         Log.d(logTag,"TankInfo affect lines????? -> "+ sqlCursor.getCount()) ;
         TankInfo tankInfo = new TankInfo(1);
         for (int i = 0; i < 2 ;i++ ){
@@ -39,8 +41,23 @@ public class SqlUtils extends  Object {
 
         }
     }
-    public Integer  queryShipList(){
-        Integer shipList[] = {1,2,3,5};
+    public Integer  queryShipList(ShipInfoList shipInfoList){
+        shipInfoList.clearList();
+        Cursor cursor = sqliteDatabase.rawQuery("select * from shipInfo",null) ;
+        Log.d(logTag, "ShipInfo affect lines -> " + cursor.getCount()) ;
+        ShipInfo shipInfo ;
+        while (cursor.moveToNext() ){
+
+            Log.d(logTag,cursor.getInt(0)+"  "+ cursor.getString(1) +"  "+  cursor.getString(2) + "  "+ cursor.getString(3) +"  "+ cursor.getString(4)) ;
+            shipInfo = new ShipInfo();
+            shipInfo.setShipId(cursor.getInt(0));
+            shipInfo.setCrt(cursor.getString(1)) ;
+            shipInfo.setName(cursor.getString(2));
+            shipInfo.setTankNumber(cursor.getInt(3));
+            shipInfo.setCapacityNumber(cursor.getInt(4));
+            shipInfoList.appendShipInfo(shipInfo);
+        }
+        Log.d(logTag,"ships number -> " + shipInfoList.size());
         return 1 ;
     }
     public Boolean queryTankInfo(TankInfo tankInfo){

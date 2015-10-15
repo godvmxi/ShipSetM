@@ -16,8 +16,18 @@ public class ShipInfo {
     private Date validDate ;
 
     private Integer calType;
+    private String version;
 
     public ShipInfo(){
+        this.shipId  = 0;
+        this.name = new String();
+        this.crt =  new String();
+        this.tankNumber = 0;
+        this.capacityNumber = 0;
+        this.shipTrimValue = new String();
+        this.validDate = new  Date();
+        this.calType = 1 ;
+        this.version = new String("1.0.01");
 
     }
     public ShipInfo(ShipInfo info){
@@ -92,6 +102,21 @@ public class ShipInfo {
 
     public void setCalType(Integer calType) {
         this.calType = calType;
+    }
+
+    @Override
+    public String toString() {
+        return "ShipInfo{" +
+                "shipId=" + shipId +
+                ", name='" + name + '\'' +
+                ", crt='" + crt + '\'' +
+                ", tankNumber=" + tankNumber +
+                ", capacityNumber=" + capacityNumber +
+                ", shipTrimValue='" + shipTrimValue + '\'' +
+                ", validDate=" + validDate +
+                ", calType=" + calType +
+                ", version=" + version +
+                '}';
     }
 }
 

@@ -24,11 +24,16 @@ public class ShipInfoList {
     public Boolean removeShipInfo(Integer shipId){
         return true ;
     }
-
+    public Integer size(){
+        return shipInfolist.size();
+    }
     @Override
     public String toString() {
-        return "ShipInfoList{" +
-                "shipInfolist=" + shipInfolist +
-                '}';
+        String ret = new String("ShipInfoList{" +
+                "shipInfolist=");
+        for (int i = 0;i<shipInfolist.size();i++){
+            ret = ret + "   "+ ((ShipInfo)(shipInfolist.get(i))).toString();
+        }
+        return ret ;
     }
 }

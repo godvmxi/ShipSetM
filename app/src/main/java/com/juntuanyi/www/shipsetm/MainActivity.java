@@ -3,8 +3,6 @@ package com.juntuanyi.www.shipsetm;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,19 +15,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 
 public class MainActivity extends Activity {
     private String logTag ;
     private TankView tankView1;
     private TankView tankView2;
-    private DatabaseHelper sqlUtils;
+//    private DatabaseHelper sqlUtils;
     private TankViewEvent tankViewEvent = null ;
-    private SqlUtils dbHandler;
+    private SqlUtils sqlUtils;
+    private ShipInfoList shipInfoList ;
     private TextView textViewTopInfo ;
     private LinearLayout linearLayoutTankList = null ;
 
@@ -44,7 +40,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         linearLayoutTankList = (LinearLayout) findViewById(R.id.linearLayoutTankList);
         textViewTopInfo = (TextView) findViewById(R.id.textViewTopInfo);
-        this.initDemoDatabase((Context)this);
+        this.initBasicData((Context) this);
+        shipInfoList = new ShipInfoList();
 
         tankViewEvent = new TankViewEvent() {
             @Override
@@ -64,7 +61,8 @@ public class MainActivity extends Activity {
         Log.d(logTag,"total object number -> " +  tankViewList.size());
 
 
-        this.dbHandler = new SqlUtils(context ,"ships.db3");
+        sqlUtils = new SqlUtils(context ,"ships.db3");
+
         textViewTopInfo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -74,6 +72,8 @@ public class MainActivity extends Activity {
                 }
                 Log.d(logTag,"top info click ->  " + tankNumber);
                 updateTankViewItem();
+                sqlUtils.queryShipList(shipInfoList);
+                Log.d(logTag,shipInfoList.toString() );
             }
         });
         return ;
@@ -112,7 +112,7 @@ public class MainActivity extends Activity {
             linearLayoutTankList.addView((View)view);
         }
     }
-    public void initDemoDatabase(Context context){
+    public void initBasicData(Context context){
         String filesDir =  context.getFilesDir().getAbsolutePath() ;
         Log.d(logTag,"file dir-> "+filesDir.toString());
         String baseDataDir = filesDir.replaceAll("files","") ;
@@ -148,5 +148,6 @@ public class MainActivity extends Activity {
             }
         }
     }
+
 
 }
