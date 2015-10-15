@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10px"
-            android:text="Some Common Info and Setting"
+            android:text="Tank     Sounding  Temp    Result"
 
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>

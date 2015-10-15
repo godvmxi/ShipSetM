@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_marginLeft="5dp"
+
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     >
@@ -16,30 +16,54 @@
         <!--app:exampleDrawable="@android:drawable/ic_menu_add" />-->
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Label"
+        android:text="TankX"
+
         android:id="@+id/textViewTankName" />
 
     <EditText
-        android:layout_width="5dp"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+
         android:layout_height="wrap_content"
         android:id="@+id/editTextSounding"
-        android:text="0.00"
+        android:text="4.200"
         android:maxLines="1"
         android:singleLine="true"
         android:digits="0123456789."
-        android:maxLength="7"
-        android:gravity="center"
-        android:layout_marginLeft="10dp"
+        android:maxLength="8"
+        android:ems="10"
+        android:maxEms="10"
 
-        android:layout_weight="1" />
+
+
+
+        android:numeric="decimal"
+        android:inputType="numberDecimal"
+    />
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextTemprature"
+        android:text="23.5"
+        android:maxLines="1"
+        android:singleLine="true"
+
+        android:digits="0123456789."
+        android:inputType="numberDecimal" />
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="3"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="result-> 0.000"
+        android:text="0.000"
         android:clickable="true"
         android:layout_marginLeft="10dp"
         android:id="@+id/textViewResult" />
