@@ -11,11 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 
 public class MainActivity extends Activity {
@@ -25,7 +30,11 @@ public class MainActivity extends Activity {
     private DatabaseHelper sqlUtils;
     private TankViewEvent tankViewEvent = null ;
     private SqlUtils dbHandler;
+    private TextView textViewTopInfo ;
     private LinearLayout linearLayoutTankList = null ;
+
+    private List<TankView> tankViewList =null ;
+    private Integer tankNumber = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +42,9 @@ public class MainActivity extends Activity {
 
 
         setContentView(R.layout.activity_main);
+        linearLayoutTankList = (LinearLayout) findViewById(R.id.linearLayoutTankList);
+        textViewTopInfo = (TextView) f = 0;indViewById(R.id.textViewTopInfo);
+
         tankViewEvent = new TankViewEvent() {
             @Override
             public void onSoundingChanged(TankInfo info) {
@@ -44,16 +56,19 @@ public class MainActivity extends Activity {
         TankInfo.soundingMin = 0;
         TankInfo.shipId = 1001;
         Context context = this;
-        linearLayoutTankList = (LinearLayout) findViewById(R.id.linearLayoutTankList);
+        tankViewList =  new ArrayList<TankView>( 0) ;
+
         TankView  view ;
         TankInfo info ;
         for (int i = 1 ; i < 5 ; i++){
             view = new TankView(this);
             info = new TankInfo(i);
             view.setInfo(info);
+            tankViewList.add(view) ;
 
             linearLayoutTankList.addView((View)view);
         }
+        Log.d(logTag,"total object number -> " +  tankViewList.size());
 //        tankView1 = (TankView) findViewById(R.id.tankView1);
 //
 //        tankView1.setInfo(new TankInfo( 1));
@@ -111,6 +126,13 @@ public class MainActivity extends Activity {
             }
         }
         this.dbHandler = new SqlUtils(context ,"demo.db3");
+        textViewTopInfo.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(logTag,"top info click");
+            }
+        });
+
         return ;
 
 

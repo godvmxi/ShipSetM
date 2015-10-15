@@ -39,20 +39,19 @@ public class TankView extends LinearLayout {
         editTextSounding = (EditText) findViewById(R.id.editTextSounding) ;
         textViewResult = ( TextView) this.findViewById(R.id.textViewResult);
         textViewTankName.setText("ddd");
-//        textViewResult.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                if (tankViewEvent == null) {
-//                    Log.d("TankView", "click is here" + info.toString());
-//                    Log.e("TankView", "not set event handler");
-//                    return;
-//                    //shoud raise a exception
-//                }
+        textViewResult.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (tankViewEvent == null) {
+                    Log.d("TankView", "click is here" + info.toString());
+                    return;
+                    //shoud raise a exception
+                }
 //                tankViewEvent.onSoundingChanged(info);
-//
-//            }
-//        });
+
+            }
+        });
     }
 
 
@@ -69,8 +68,8 @@ public class TankView extends LinearLayout {
             public void onClick(View v) {
 
                 if (tankViewEvent == null) {
-                    Log.d("TankView", "click is here" + info.toString());
-                    Log.e("TankView", "not set event handler");
+                    Log.d("TankView", "click 2 is here" + info.toString());
+
                     return;
                     //shoud raise a exception
                 }
