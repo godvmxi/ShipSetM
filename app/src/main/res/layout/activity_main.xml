@@ -23,9 +23,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10px"
-            android:text="Tank     Sounding  Temp    Result"
+            android:text="Tank     Sounding  Temp      Result"
 
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30dp" />
     </LinearLayout>
 
 

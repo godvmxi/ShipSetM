@@ -42,20 +42,15 @@ public class TankView extends LinearLayout {
         textViewResult.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (tankViewEvent == null) {
                     Log.d("TankView", "click is here" + info.toString());
                     return;
                     //shoud raise a exception
                 }
-//                tankViewEvent.onSoundingChanged(info);
-
+                tankViewEvent.onSoundingChanged(info);
             }
         });
     }
-
-
-
     public TankView(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.tank_view, this, true);
@@ -74,7 +69,6 @@ public class TankView extends LinearLayout {
                     //shoud raise a exception
                 }
                 tankViewEvent.onSoundingChanged(info);
-
             }
         });
     }
