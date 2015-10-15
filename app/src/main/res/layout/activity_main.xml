@@ -51,5 +51,14 @@
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="0px"
+        android:orientation="vertical"
+        android:id="@+id/linearLayoutTankList">
+
+    </LinearLayout>
 
 </LinearLayout>

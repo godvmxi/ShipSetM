@@ -32,7 +32,27 @@ public class TankView extends LinearLayout {
 
 
     public TankView(Context context) {
+
         super(context);
+        LayoutInflater.from(context).inflate(R.layout.tank_view, this, true);
+        textViewTankName = (TextView) findViewById(R.id.textViewTankName);
+        editTextSounding = (EditText) findViewById(R.id.editTextSounding) ;
+        textViewResult = ( TextView) this.findViewById(R.id.textViewResult);
+        textViewTankName.setText("ddd");
+//        textViewResult.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if (tankViewEvent == null) {
+//                    Log.d("TankView", "click is here" + info.toString());
+//                    Log.e("TankView", "not set event handler");
+//                    return;
+//                    //shoud raise a exception
+//                }
+//                tankViewEvent.onSoundingChanged(info);
+//
+//            }
+//        });
     }
 
 

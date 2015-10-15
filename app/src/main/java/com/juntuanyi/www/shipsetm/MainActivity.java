@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,6 +25,7 @@ public class MainActivity extends Activity {
     private DatabaseHelper sqlUtils;
     private TankViewEvent tankViewEvent = null ;
     private SqlUtils dbHandler;
+    private LinearLayout linearLayoutTankList = null ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,18 +43,29 @@ public class MainActivity extends Activity {
         TankInfo.soundingMax = 9999;
         TankInfo.soundingMin = 0;
         TankInfo.shipId = 1001;
-        tankView1 = (TankView) findViewById(R.id.tankView1);
+        Context context = this;
+        linearLayoutTankList = (LinearLayout) findViewById(R.id.linearLayoutTankList);
+        TankView  view ;
+        TankInfo info ;
+        for (int i = 1 ; i < 5 ; i++){
+            view = new TankView(this);
+            info = new TankInfo(i);
+            view.setInfo(info);
 
-        tankView1.setInfo(new TankInfo( 1));
-        tankView1.setTankViewEvent(tankViewEvent);
-        tankView2 = (TankView) findViewById(R.id.tankView2);
-        tankView2.setInfo(new TankInfo( 2));
-        tankView2.setTankViewEvent(tankViewEvent);
+            linearLayoutTankList.addView((View)view);
+        }
+//        tankView1 = (TankView) findViewById(R.id.tankView1);
+//
+//        tankView1.setInfo(new TankInfo( 1));
+//        tankView1.setTankViewEvent(tankViewEvent);
+//        tankView2 = (TankView) findViewById(R.id.tankView2);
+//        tankView2.setInfo(new TankInfo( 2));
+//        tankView2.setTankViewEvent(tankViewEvent);
 
 
 //        db.execSql("Create table help");
 
-        Context context = this;
+
 //        File dbFile =  context.getDatabasePath("demo.db");
 //        Log.d(logTag,"---> "+dbFile.getAbsolutePath());
 
@@ -68,9 +82,9 @@ public class MainActivity extends Activity {
         if ( !(new File(databasesDir)).exists()  ) {
             (new File(databasesDir)).mkdir() ;
         }
-//        else {
-//            Log.d(logTag,"no need to create databases dir");
-//        }
+        else {
+            Log.d(logTag,"no need to create databases dir");
+        }
 
 
 
