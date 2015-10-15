@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
         linearLayoutTankList = (LinearLayout) findViewById(R.id.linearLayoutTankList);
-        textViewTopInfo = (TextView) f = 0;indViewById(R.id.textViewTopInfo);
+        textViewTopInfo = (TextView) findViewById(R.id.textViewTopInfo);
 
         tankViewEvent = new TankViewEvent() {
             @Override
