@@ -12,7 +12,8 @@ public class ShipInfo {
     private String crt ;
     private Integer tankNumber ;
     private Integer capacityNumber ;
-    private String shipTrimValue ;
+    private Float shipTrimMin ;
+    private Float shipTrimStep;
     private Date validDate ;
 
     private Integer calType;
@@ -24,10 +25,12 @@ public class ShipInfo {
         this.crt =  new String();
         this.tankNumber = 0;
         this.capacityNumber = 0;
-        this.shipTrimValue = new String();
+        this.shipTrimMin =  new Float(0);
+        this.shipTrimStep =  new Float(0);
+
         this.validDate = new  Date();
-        this.calType = 1 ;
-        this.version = new String("1.0.01");
+        this.calType = 0 ;
+        this.version = new String("0.0.0");
 
     }
     public ShipInfo(ShipInfo info){
@@ -36,8 +39,12 @@ public class ShipInfo {
         this.crt =  new String(info.getCrt());
         this.tankNumber = info.getTankNumber();
         this.capacityNumber =info.getCapacityNumber();
-        this.shipTrimValue = info.getShipTrimValue();
+
+        this.shipTrimMin = info.getShipTrimMin() ;
+        this.shipTrimStep = info.getShipTrimStep();
         this.validDate = info.getValidDate();
+        this.calType = info.getCalType();
+        this.version = info.getVersion();
     }
 
     public Integer getShipId() {
@@ -80,12 +87,20 @@ public class ShipInfo {
         this.capacityNumber = capacityNumber;
     }
 
-    public String getShipTrimValue() {
-        return shipTrimValue;
+    public Float getShipTrimMin() {
+        return shipTrimMin;
     }
 
-    public void setShipTrimValue(String shipTrimValue) {
-        this.shipTrimValue = shipTrimValue;
+    public void setShipTrimMin(Float shipTrimMin) {
+        this.shipTrimMin = shipTrimMin;
+    }
+
+    public Float getShipTrimStep() {
+        return shipTrimStep;
+    }
+
+    public void setShipTrimStep(Float shipTrimStep) {
+        this.shipTrimStep = shipTrimStep;
     }
 
     public Date getValidDate() {
@@ -104,6 +119,14 @@ public class ShipInfo {
         this.calType = calType;
     }
 
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
     @Override
     public String toString() {
         return "ShipInfo{" +
@@ -112,7 +135,8 @@ public class ShipInfo {
                 ", crt='" + crt + '\'' +
                 ", tankNumber=" + tankNumber +
                 ", capacityNumber=" + capacityNumber +
-                ", shipTrimValue='" + shipTrimValue + '\'' +
+                ", shipTrimMin='" + shipTrimMin + '\'' +
+                ", shipTrimStep='" + shipTrimStep + '\'' +
                 ", validDate=" + validDate +
                 ", calType=" + calType +
                 ", version=" + version +

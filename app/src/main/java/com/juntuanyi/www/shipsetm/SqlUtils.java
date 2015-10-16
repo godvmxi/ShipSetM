@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.content.Context;
 
+import java.util.Date;
+
 /**
  * Created by dan on 15-9-30.
  */
@@ -55,6 +57,12 @@ public class SqlUtils extends  Object {
             shipInfo.setName(cursor.getString(2));
             shipInfo.setTankNumber(cursor.getInt(3));
             shipInfo.setCapacityNumber(cursor.getInt(4));
+            shipInfo.setShipTrimMin(cursor.getFloat(5));
+            shipInfo.setShipTrimStep(cursor.getFloat(6));
+            shipInfo.setValidDate(new Date(cursor.getInt(7)));
+            shipInfo.setCalType(cursor.getInt(8));
+            shipInfo.setVersion(cursor.getString(9));
+
             shipInfoList.appendShipInfo(shipInfo);
         }
         Log.d(logTag,"ships number -> " + shipInfoList.size());
