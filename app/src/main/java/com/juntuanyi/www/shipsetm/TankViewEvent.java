@@ -5,4 +5,5 @@ package com.juntuanyi.www.shipsetm;
  */
 public interface TankViewEvent {
     public void onSoundingChanged(TankInfo info);
+    public void onButtonCalResultClick(TankInfo info);
 }

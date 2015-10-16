@@ -45,8 +45,13 @@ public class MainActivity extends Activity {
 
         tankViewEvent = new TankViewEvent() {
             @Override
+            public void onButtonCalResultClick(TankInfo info) {
+                Log.d(logTag, "button event-> " + info.toString());
+                Log.d(logTag, "callback-> " + info.ref.toString() );
+            }
+            @Override
             public void onSoundingChanged(TankInfo info) {
-                Log.d(logTag, "event-> " + info.toString());
+                Log.d(logTag, "changed event-> " + info.toString());
                 Log.d(logTag, "callback-> " + info.ref.toString() );
             }
         };

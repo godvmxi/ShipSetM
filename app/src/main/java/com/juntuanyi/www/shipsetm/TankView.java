@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,7 +16,7 @@ import android.util.Log;
  * TODO: document your custom view class.
  */
 public class TankView extends LinearLayout {
-
+    String logTag = getName();
     private String name;
     private Float sounding ;
     private Float result ;
@@ -26,6 +27,7 @@ public class TankView extends LinearLayout {
     private TextView textViewTankName ;
     private TextView textViewResult ;
     private EditText editTextSounding ;
+    private Button  buttonCalResult ;
     private TankViewEvent tankViewEvent = null ;
 
 
@@ -37,17 +39,23 @@ public class TankView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.tank_view, this, true);
         textViewTankName = (TextView) findViewById(R.id.textViewTankName);
         editTextSounding = (EditText) findViewById(R.id.editTextSounding) ;
+        buttonCalResult = ( Button) this.findViewById(R.id.buttonCalResult);
         textViewResult = ( TextView) this.findViewById(R.id.textViewResult);
         textViewTankName.setText("ddd");
-        textViewResult.setOnClickListener(new OnClickListener() {
+        buttonCalResult.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (tankViewEvent == null) {
-                    Log.d("TankView", "click is here" + info.toString());
+                    Log.e(logTag, "click is here" + info.toString());
                     return;
                     //shoud raise a exception
                 }
-                tankViewEvent.onSoundingChanged(info);
+                String stringSounding =  editTextSounding.getText().toString() ;
+                Float floatSounding =( Float.valueOf(stringSounding)) * 1000;
+                info.sounding = floatSounding.intValue();
+                Log.d(logTag, "souding -> " + info.sounding);
+
+                tankViewEvent.onButtonCalResultClick(info);
             }
         });
     }
@@ -68,6 +76,10 @@ public class TankView extends LinearLayout {
                     return;
                     //shoud raise a exception
                 }
+                String stringSounding =  editTextSounding.getText().toString() ;
+                Float floatSounding =( Float.valueOf(stringSounding)) * 1000;
+                Integer integerSounding = floatSounding.intValue();
+                Log.d("TankView","souding -> " + integerSounding);
                 tankViewEvent.onSoundingChanged(info);
             }
         });
